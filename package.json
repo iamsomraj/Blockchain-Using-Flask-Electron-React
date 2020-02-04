@@ -57,10 +57,15 @@
   },
   "build": {
     "appId": "com.somrajmukherjee.blockchain",
-    "productName": "Blockchain",
+    "productName": "Blockchain Client",
+    "target": "NSIS",
     "copyright": "Copyright © 2020 Somraj Mukherjee",
     "mac": {
       "category": "public.app-category.utilities"
     }
+  },
+  "nsis": {
+    "allowToChangeInstallationDirectory": true,
+    "oneClick": false
   }
 }
