@@ -6,7 +6,8 @@ class ViewTransaction extends React.Component {
   state = {
     isPortNotFilled: true,
     serverPort: '',
-    transactions: null
+    transactions: null,
+    isConnectionFailed: false
   };
 
   serverPortHandler = event => {
@@ -31,18 +32,20 @@ class ViewTransaction extends React.Component {
         .then(function(response) {
           // handle success
           self.setState({
+            serverPort: self.state.serverPort,
             isPortNotFilled: false,
-            transactions: response.data.chain.slice(1)
+            transactions: response.data.chain.slice(1),
+            isConnectionFailed: false
           });
-
-          console.log(self.state.transactions);
         })
         .catch(function(error) {
-          // handle error
+          self.setState({
+            isPortNotFilled: true,
+            serverPort: '',
+            transactions: null,
+            isConnectionFailed: true
+          });
           console.log(error);
-        })
-        .then(function() {
-          // always executed
         });
     }
   };
@@ -64,6 +67,26 @@ class ViewTransaction extends React.Component {
                   The number is your node address so that you can specify the
                   node.
                 </p>
+                {this.state.isConnectionFailed ? (
+                  <div>
+                    <div className="ui form error">
+                      <div className="ui error message">
+                        <br />
+
+                        <div className="header">
+                          <h2>Connection Failure</h2>
+                        </div>
+                        <ul className="list">
+                          <li>Make sure that the server is running</li>
+                          <li>Always check your port address</li>
+                        </ul>
+                      </div>
+                      <br />
+                    </div>
+                  </div>
+                ) : (
+                  <div></div>
+                )}
                 <div className="ui form">
                   <div className="field">
                     <input
@@ -96,9 +119,23 @@ class ViewTransaction extends React.Component {
               </div>
             </h2>
             <br />
+            <div className="ui conatiner">
+              <center>
+                <div
+                  className="large ui animated blue button"
+                  onClick={this.serverPortSubmitHandler}
+                >
+                  <div className="hidden content">Reload</div>
+                  <div className="visible content">
+                    <i className="sync icon"></i>
+                  </div>
+                </div>
+              </center>
+            </div>
             <br />
             <br />
             <br />
+
             <div className="ui container">
               <div className="ui segment">
                 <table className="ui inverted fixed single line five column celled very padded table">
