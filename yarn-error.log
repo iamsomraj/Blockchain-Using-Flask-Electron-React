@@ -1,0 +1,101 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js electron-pack
+
+PATH: 
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Somraj Mukherjee\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Java\jdk-13.0.1\bin;C:\MinGW\bin;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files\Git\usr\bin;C:\Program Files (x86)\Yarn\bin;C:\Users\Somraj Mukherjee\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\Somraj Mukherjee\AppData\Local\Programs\Python\Python37-32;C:\Users\Somraj Mukherjee\AppData\Local\Microsoft\WindowsApps;C:\Users\Somraj Mukherjee\AppData\Local\GitHubDesktop\bin;C:\Users\Somraj Mukherjee\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Somraj Mukherjee\AppData\Roaming\npm;C:\Users\Somraj Mukherjee\AppData\Local\Yarn\bin
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  13.6.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: D:\Project\blockchain\package.json: Unexpected string in JSON at position 928
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:310:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "homepage": "./",
+    "name": "blockchain",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "@testing-library/jest-dom": "^4.2.4",
+      "@testing-library/react": "^9.4.0",
+      "@testing-library/user-event": "^7.2.1",
+      "axios": "^0.19.2",
+      "concurrently": "^5.1.0",
+      "electron": "^7.1.11",
+      "electron-builder": "^22.3.2",
+      "electron-is-dev": "^1.1.0",
+      "react": "^16.12.0",
+      "react-dom": "^16.12.0",
+      "react-scripts": "3.3.1",
+      "semantic-ui-react": "^0.88.2",
+      "typescript": "^3.7.5",
+      "wait-on": "^4.0.0",
+      "yarn": "^1.21.1"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "predeploy": "react-scripts build",
+      "deploy": "gh-pages -d build",
+      "test": "react-scripts test",
+      "postinstall": "electron-builder install-app-deps",
+      "preelectron-pack": "yarn build",
+      "electron-pack": "electron-builder build -mw"
+      "eject": "react-scripts eject",
+      "electron-dev": "concurrently \"SET BROWSER=none&&npm run start\" \"wait-on http://localhost:3000 && electron .\""
+    },
+    "eslintConfig": {
+      "extends": "react-app"
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "main": "public/electron.js",
+    "author": {
+      "name": "Somraj Mukherjee",
+      "email": "iamsomraj@gmail.com",
+      "url": "https://iamsomraj.github.io"
+    },
+    "build": {
+      "appId": "com.somrajmukherjee.blockchain",
+      "productName": "Blockchain Client",
+      "copyright": "Copyright © 2020 Somraj Mukherjee",
+      "mac": {
+        "category": "public.app-category.utilities"
+      },
+      "files": [
+        "build/**/*",
+        "node_modules/**/*"
+      ],
+      "directories": {
+        "buildResources": "assets"
+      }
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
