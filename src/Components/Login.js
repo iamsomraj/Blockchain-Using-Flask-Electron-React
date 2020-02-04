@@ -9,6 +9,14 @@ class Login extends Component {
     instance: ''
   };
 
+  initialiseHandler = event => {
+    event.preventDefault();
+    this.setState({
+      isLoginNotDone: true,
+      instance: ''
+    });
+  };
+
   instanceHandler = event => {
     event.preventDefault();
     if (
@@ -43,7 +51,8 @@ class Login extends Component {
                   <h2>Enter a number:</h2>
                 </Header>
                 <p>
-                  Instance is your port address so that we can Identify you.
+                  Instance is your port address so that we can initialise your
+                  Blockchain Wallet.
                 </p>
                 <div className="ui form">
                   <div className="field">
@@ -54,19 +63,13 @@ class Login extends Component {
                     />
                   </div>
                   <div className="field"></div>
-                  {/* <button
-                    className="ui blue button"
-                    onClick={this.instanceSubmitHandler}
-                  >
-                    Submit
-                  </button> */}
                   <div
-                    class="ui animated blue button"
+                    className="ui animated blue button"
                     onClick={this.instanceSubmitHandler}
                   >
-                    <div class="visible content">Submit</div>
-                    <div class="hidden content">
-                      <i class="right arrow icon"></i>
+                    <div className="visible content">Submit</div>
+                    <div className="hidden content">
+                      <i className="right arrow icon"></i>
                     </div>
                   </div>
                 </div>
@@ -74,7 +77,7 @@ class Login extends Component {
             </Modal.Content>
           </Modal>
         ) : (
-          <App port={this.state.instance} />
+          <App port={this.state.instance} initialise={this.initialiseHandler} />
         )}
       </div>
     );

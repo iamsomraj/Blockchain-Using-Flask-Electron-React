@@ -54,7 +54,7 @@ class ViewTransaction extends React.Component {
     return (
       <div>
         {this.state.isPortNotFilled === true ? (
-          <Modal open={this.state.isPortNotFilled}>
+          <Modal closeIcon onClose={ () => this.props.close(this.props.stage)} open={this.state.isPortNotFilled}>
             <Modal.Header>
               <h1>Choose your node</h1>
             </Modal.Header>
@@ -97,12 +97,12 @@ class ViewTransaction extends React.Component {
                   </div>
                   <div className="field"></div>
                   <div
-                    class="ui animated blue button"
+                    className="ui animated blue button"
                     onClick={this.serverPortSubmitHandler}
                   >
-                    <div class="visible content">Submit</div>
-                    <div class="hidden content">
-                      <i class="right arrow icon"></i>
+                    <div className="visible content">Submit</div>
+                    <div className="hidden content">
+                      <i className="right arrow icon"></i>
                     </div>
                   </div>
                 </div>

@@ -11,7 +11,19 @@ class App extends Component {
     privatekey: '',
     isKeySet: false,
     stage: 1,
+    prestage: null,
     isFailed: false
+  };
+
+  restoreHandler = stage => {
+    this.setState({
+      port: this.state.port,
+      publickey: this.state.publickey,
+      privatekey: this.state.privatekey,
+      isKeySet: this.state.isKeySet,
+      stage: stage,
+      isFailed: this.state.isFailed
+    });
   };
 
   headerHandler = (event, tabName) => {
@@ -24,6 +36,7 @@ class App extends Component {
       });
     } else {
       this.setState({
+        prestage: this.state.stage,
         stage: 3
       });
     }
@@ -106,6 +119,7 @@ class App extends Component {
             private={this.state.privatekey}
             warning={this.state.isKeySet}
             error={this.state.isFailed}
+            initial={this.props.initialise}
           />
         </div>
       ) : this.state.stage === 2 ? (
@@ -115,7 +129,10 @@ class App extends Component {
           clientPort={this.state.port}
         />
       ) : this.state.stage === 3 ? (
-        <ViewTransaction />
+        <ViewTransaction
+          stage={this.state.prestage}
+          close={this.restoreHandler}
+        />
       ) : (
         <div></div>
       )}

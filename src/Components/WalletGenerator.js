@@ -23,7 +23,11 @@ const WalletGenerator = props => {
                   <div className="field">
                     <br />
                     <div className="ui success message">
-                      <div className="header">Keys Generated!</div>
+                      <div className="header">Keys are generated</div>
+                      <ul className="list">
+                      <li>Both Public Key and Private Key will help you in your further transactions </li>
+                      <li>Keys play crucial role in generating transaction signatures </li>
+                    </ul>
                     </div>
                     <br />
                   </div>
@@ -48,15 +52,31 @@ const WalletGenerator = props => {
             )}
 
             {props.error ? (
-              <div className="ui form error">
-                <div className="ui error message">
-                  <div className="header">
-                    <h2>Connection Failure</h2>
+              <div>
+                <div className="ui form error">
+                  <div className="ui error message">
+                    <div className="header">
+                      <h2>Connection Failure</h2>
+                    </div>
+                    <ul className="list">
+                      <li>Make sure that the server is running</li>
+                      <li>Always check your port address</li>
+                      <li>Reload Blockchain Client to make a clean start</li>
+                    </ul>
                   </div>
-                  <ul className="list">
-                    <li>Make sure that the server is running</li>
-                    <li>Always check your port address</li>
-                  </ul>
+                  <div className="ui conatiner">
+                    <center>
+                      <div
+                        className="large ui animated negative button"
+                        onClick={props.initial}
+                      >
+                        <div className="hidden content">Reload</div>
+                        <div className="visible content">
+                          <i className="sync icon"></i>
+                        </div>
+                      </div>
+                    </center>
+                  </div>
                 </div>
                 <br />
               </div>
@@ -64,9 +84,11 @@ const WalletGenerator = props => {
               <div></div>
             )}
             <div className="field">
-              <button className="ui blue button" onClick={props.click}>
-                Generate Wallet
-              </button>
+              <center>
+                <button className="ui positive button" onClick={props.click}>
+                  Generate Wallet
+                </button>
+              </center>
             </div>
             <div className="field">
               <label>
