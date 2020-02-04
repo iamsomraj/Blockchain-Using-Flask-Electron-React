@@ -8,7 +8,8 @@ class MakeTransaction extends Component {
     amount: '',
     isSuccess: false,
     serverPort: '',
-    isFormFail: false
+    isFormFail: false,
+    errorText: 'Failure'
   };
   recipientPublicKeyUpdateHandler = event => {
     event.preventDefault();
@@ -25,11 +26,12 @@ class MakeTransaction extends Component {
   portUpdateHandler = event => {
     event.preventDefault();
     this.setState({
-      serverPort: event.target.value.slice(0, 1)
+      serverPort: event.target.value
     });
   };
 
   makeTransactionHandler = event => {
+    event.preventDefault();
     if (
       this.state.amount !== '' &&
       this.state.sender_private_key !== '' &&
@@ -39,7 +41,6 @@ class MakeTransaction extends Component {
       +this.state.serverPort > 0 &&
       +this.state.serverPort < 10
     ) {
-      event.preventDefault();
       let bodyserverFormData = new FormData();
       bodyserverFormData.set('sender_public_key', this.state.sender_public_key);
       bodyserverFormData.set(
@@ -103,7 +104,7 @@ class MakeTransaction extends Component {
                 recipient_public_key: '',
                 amount: '',
                 serverPort: '',
-
+                errorText: 'Node Server refused to connect',
                 isSuccess: false,
                 isFormFail: true
               });
@@ -117,21 +118,23 @@ class MakeTransaction extends Component {
             amount: '',
             serverPort: '',
             isSuccess: false,
-            isFormFail: true
+            isFormFail: true,
+            errorText: 'Client Server refused to connect'
           });
         });
-    } else {
-      console.log(this.state);
+    // } else {
+    //   console.log(this.state);
 
-      this.setState({
-        recipient_public_key: '',
-        amount: '',
-        serverPort: '',
-        isSuccess: false,
-        isFormFail: false
-      });
+    //   this.setState({
+    //     recipient_public_key: '',
+    //     amount: '',
+    //     serverPort: '',
+    //     isSuccess: false,
+    //     isFormFail: true,
+    //     errorText: 'Fields may be wrong or empty'
+    //   });
     }
-  };
+  }
   render = () => {
     return (
       <div>
@@ -169,7 +172,7 @@ class MakeTransaction extends Component {
                   <div className="ui form error">
                     <div className="ui error message">
                       <div className="header">
-                        <h2>Connection Failure</h2>
+                        <h2>{this.state.errorText}</h2>
                       </div>
                       <ul className="list">
                         <li>Make sure that the server is running</li>
@@ -186,67 +189,71 @@ class MakeTransaction extends Component {
               <div className="field">
                 <label>Sender Public Key</label>
                 <input
-                  // onChange={this.publicKeyUpdateHandler}
                   readOnly
-                  required
                   type="text"
                   name="sender-public-key"
                   placeholder="Sender Public Key"
                   value={this.state.sender_public_key}
+                  required
                 />
               </div>
               <div className="field">
                 <label>Sender Private Key</label>
                 <input
-                  // onChange={this.privateKeyUpdateHandler}
                   readOnly
-                  required
                   type="text"
                   name="sender-private-key"
                   placeholder="Sender Private Key"
                   value={this.state.sender_private_key}
+                  required
                 />
               </div>
               <div className="field">
                 <label>Recipient Public Key</label>
                 <input
                   onChange={this.recipientPublicKeyUpdateHandler}
-                  required
                   type="text"
                   name="recipient-public-key"
                   placeholder="Recipient Public Key"
                   value={this.state.recipient_public_key}
+                  required
                 />
               </div>
               <div className="field">
                 <label>Amount</label>
                 <input
                   onChange={this.amountUpdateHandler}
-                  required
                   type="text"
                   name="amount"
                   placeholder="Amount"
                   value={this.state.amount}
+                  required
                 />
               </div>
               <div className="field">
                 <label>Server Port</label>
                 <input
                   onChange={this.portUpdateHandler}
-                  required
                   type="number"
                   name="server-port"
                   placeholder="Server Port Address"
                   value={this.state.serverPort.slice(0, 1)}
+                  required
                 />
               </div>
-              <div className="field"></div>
-              <button
-                className="ui green button"
-                onClick={this.makeTransactionHandler}
-              >
-                Submit
-              </button>
+              <div className="field">
+                <center>
+                  <div
+                    className="large ui animated positive button"
+                    onClick={this.makeTransactionHandler}
+                  >
+                    <div className="hidden content">
+                      <i className="handshake white icon"></i>
+                    </div>
+                    <div className="visible content">Transfer</div>
+                  </div>
+                </center>
+              </div>
             </form>
           </div>
         </div>

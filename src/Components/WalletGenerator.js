@@ -4,7 +4,7 @@ const WalletGenerator = props => {
   return (
     <div>
       <h2 className="ui center aligned icon header">
-        <i className="circular dollar icon"></i>
+        <i className="circular rupee icon"></i>
         Wallet Generator
         <div className="sub header">
           Press The Button To Generate Your Blockchain Wallet
@@ -25,9 +25,20 @@ const WalletGenerator = props => {
                     <div className="ui success message">
                       <div className="header">Keys are generated</div>
                       <ul className="list">
-                      <li>Both Public Key and Private Key will help you in your further transactions </li>
-                      <li>Keys play crucial role in generating transaction signatures </li>
-                    </ul>
+                        {props.copy ? (
+                          <li>Your Public Key is copied to clipboard</li>
+                        ) : (
+                          ''
+                        )}
+                        <li>
+                          Both Public Key and Private Key will help you in your
+                          further transactions
+                        </li>
+                        <li>
+                          Keys play crucial role in generating transaction
+                          signatures
+                        </li>
+                      </ul>
                     </div>
                     <br />
                   </div>
@@ -85,9 +96,17 @@ const WalletGenerator = props => {
             )}
             <div className="field">
               <center>
-                <button className="ui positive button" onClick={props.click}>
-                  Generate Wallet
-                </button>
+                <div
+                  className="large ui animated green button"
+                  onClick={props.click}
+                >
+                  <h3>
+                    <div className="hidden content">
+                      <i className="key icon"></i>
+                    </div>
+                    <div className="visible content">Generate Keys</div>
+                  </h3>
+                </div>
               </center>
             </div>
             <div className="field">

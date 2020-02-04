@@ -12,7 +12,8 @@ class App extends Component {
     isKeySet: false,
     stage: 1,
     prestage: null,
-    isFailed: false
+    isFailed: false,
+    isCopy: false
   };
 
   restoreHandler = stage => {
@@ -61,6 +62,20 @@ class App extends Component {
           isKeySet: true,
           isFailed: false
         });
+        try {
+          navigator.clipboard.writeText(this.state.publickey);
+          console.log('Clipboard success!');
+
+          this.setState({
+            isCopy: true
+          });
+        } catch (error) {
+          console.log('Key copy is failed!');
+
+          this.setState({
+            isCopy: false
+          });
+        }
       } catch (error) {
         console.log(error);
         this.setState({
@@ -87,21 +102,21 @@ class App extends Component {
       <div className="ui three item fixed borderless menu">
         <a
           href="/"
-          className="item"
+          className={(this.state.stage === 1 ? 'active ' : ' ') + `item `}
           onClick={event => this.headerHandler(event, 'wallet')}
         >
           Wallet Generation
         </a>
         <a
           href="/"
-          className="item"
+          className={(this.state.stage === 2 ? 'active ' : ' ') + `item `}
           onClick={event => this.headerHandler(event, 'make')}
         >
           Make Transaction
         </a>
         <a
           href="/"
-          className="item"
+          className={(this.state.stage === 3 ? 'active ' : ' ') + `item `}
           onClick={event => this.headerHandler(event, 'view')}
         >
           View Transaction
@@ -120,6 +135,7 @@ class App extends Component {
             warning={this.state.isKeySet}
             error={this.state.isFailed}
             initial={this.props.initialise}
+            copy={this.state.isCopy}
           />
         </div>
       ) : this.state.stage === 2 ? (
@@ -139,7 +155,20 @@ class App extends Component {
       <br />
       <br />
       <div className="ui inverted vertical footer segment form-page">
-        <div className="ui container">Somraj Mukherjee &copy; 2020</div>
+        <div className="ui container">
+          Made with <i className="heart icon"></i>
+          <span> </span>
+          By<span> </span>
+          <a
+            className="ui white"
+            href="https://github.com/iamsomraj/"
+            target="blank"
+          >
+            Somraj Mukherjee
+          </a>
+          <span> </span>
+          &copy; {new Date().getFullYear()}
+        </div>
       </div>
     </div>
   );

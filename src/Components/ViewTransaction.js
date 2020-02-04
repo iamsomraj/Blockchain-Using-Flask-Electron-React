@@ -54,61 +54,85 @@ class ViewTransaction extends React.Component {
     return (
       <div>
         {this.state.isPortNotFilled === true ? (
-          <Modal closeIcon onClose={ () => this.props.close(this.props.stage)} open={this.state.isPortNotFilled}>
-            <Modal.Header>
-              <h1>Choose your node</h1>
-            </Modal.Header>
-            <Modal.Content>
-              <Modal.Description>
-                <Header>
-                  <h2>Select your port:</h2>
-                </Header>
-                <p>
-                  The number is your node address so that you can specify the
-                  node.
-                </p>
-                {this.state.isConnectionFailed ? (
-                  <div>
-                    <div className="ui form error">
-                      <div className="ui error message">
-                        <br />
+          <React.Fragment>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br /> 
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Modal
+              closeIcon
+              onClose={() => this.props.close(this.props.stage)}
+              open={this.state.isPortNotFilled}
+            >
+              <Modal.Header>
+                <h1>Choose your node</h1>
+              </Modal.Header>
+              <Modal.Content>
+                <Modal.Description>
+                  <Header>
+                    <h2>Select your port:</h2>
+                  </Header>
+                  <p>
+                    The number is your node address so that you can specify the
+                    node.
+                  </p>
+                  {this.state.isConnectionFailed ? (
+                    <div>
+                      <div className="ui form error">
+                        <div className="ui error message">
+                          <br />
 
-                        <div className="header">
-                          <h2>Connection Failure</h2>
+                          <div className="header">
+                            <h2>Connection Failure</h2>
+                          </div>
+                          <ul className="list">
+                            <li>Make sure that the server is running</li>
+                            <li>Always check your port address</li>
+                          </ul>
                         </div>
-                        <ul className="list">
-                          <li>Make sure that the server is running</li>
-                          <li>Always check your port address</li>
-                        </ul>
+                        <br />
                       </div>
-                      <br />
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
+                  <div className="ui form">
+                    <div className="field">
+                      <input
+                        type="number"
+                        onChange={this.serverPortHandler}
+                        value={this.state.serverPort.slice(0, 1)}
+                      />
+                    </div>
+                    <div className="field"></div>
+                    <div
+                      className="ui animated blue button"
+                      onClick={this.serverPortSubmitHandler}
+                    >
+                      <div className="visible content">Submit</div>
+                      <div className="hidden content">
+                        <i className="right arrow icon"></i>
+                      </div>
                     </div>
                   </div>
-                ) : (
-                  <div></div>
-                )}
-                <div className="ui form">
-                  <div className="field">
-                    <input
-                      type="number"
-                      onChange={this.serverPortHandler}
-                      value={this.state.serverPort.slice(0, 1)}
-                    />
-                  </div>
-                  <div className="field"></div>
-                  <div
-                    className="ui animated blue button"
-                    onClick={this.serverPortSubmitHandler}
-                  >
-                    <div className="visible content">Submit</div>
-                    <div className="hidden content">
-                      <i className="right arrow icon"></i>
-                    </div>
-                  </div>
-                </div>
-              </Modal.Description>
-            </Modal.Content>
-          </Modal>
+                </Modal.Description>
+              </Modal.Content>
+            </Modal>
+          </React.Fragment>
         ) : (
           <div>
             <h2 className="ui center aligned icon header">
@@ -180,6 +204,10 @@ class ViewTransaction extends React.Component {
             </div>
           </div>
         )}
+        <br />
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <br />
