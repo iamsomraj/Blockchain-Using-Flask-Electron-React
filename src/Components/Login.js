@@ -55,7 +55,7 @@ class Login extends Component {
                   Blockchain Wallet.
                 </p>
                 <div className="ui form">
-                  <div className="field">
+                  <div className="required field">
                     <input
                       type="number"
                       onChange={this.instanceHandler}

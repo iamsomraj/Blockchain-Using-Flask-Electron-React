@@ -208,7 +208,7 @@ class MakeTransaction extends Component {
                   required
                 />
               </div>
-              <div className="field">
+              <div className="required field">
                 <label>Recipient Public Key</label>
                 <input
                   onChange={this.recipientPublicKeyUpdateHandler}
@@ -219,18 +219,18 @@ class MakeTransaction extends Component {
                   required
                 />
               </div>
-              <div className="field">
+              <div className="required field">
                 <label>Amount</label>
                 <input
                   onChange={this.amountUpdateHandler}
                   type="text"
-                  name="amount"
+                  name="number"
                   placeholder="Amount"
                   value={this.state.amount}
                   required
                 />
               </div>
-              <div className="field">
+              <div className="required field">
                 <label>Server Port</label>
                 <input
                   onChange={this.portUpdateHandler}
@@ -241,7 +241,7 @@ class MakeTransaction extends Component {
                   required
                 />
               </div>
-              <div className="field">
+              <div className="required field">
                 <center>
                   <div
                     className="large ui animated positive button"

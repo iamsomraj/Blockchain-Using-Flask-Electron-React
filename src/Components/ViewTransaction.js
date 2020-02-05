@@ -111,7 +111,7 @@ class ViewTransaction extends React.Component {
                     <div></div>
                   )}
                   <div className="ui form">
-                    <div className="field">
+                  <div className="required field">
                       <input
                         type="number"
                         onChange={this.serverPortHandler}
